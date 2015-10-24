@@ -1,0 +1,7 @@
+name = Environment Field Access (Test)
+package = Field
+hidden = TRUE
+core = 7.x
+php = 5.4
+
+dependencies[] = environment_fieldaccess
