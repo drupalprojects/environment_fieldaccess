@@ -29,32 +29,6 @@ class EnvironmentFieldAccessTestCase extends \DrupalWebTestCase {
     }
 
     parent::__construct($test_id);
-
-    $fieldaccess = [];
-
-    foreach (environment_fieldaccess_fieldaccess_info() as $name => $info) {
-      $fieldaccess[$info['type']] = [
-        'access_name' => $name,
-        'individual' => 0,
-        'settings' => [
-          'not' => 0,
-          'environment' => [
-            'test_show' => 'test_show',
-          ],
-        ],
-      ];
-    }
-
-    $this->fieldsManager = new \EnvironmentFieldAccessFields([
-      self::TEST_MODULE => [
-        'type' => 'text',
-        'label' => self::TEST_MODULE,
-        'settings' => [
-          'fieldaccess' => $fieldaccess,
-          'user_register_form' => TRUE,
-        ],
-      ],
-    ]);
   }
 
   /**
@@ -81,6 +55,33 @@ class EnvironmentFieldAccessTestCase extends \DrupalWebTestCase {
   public function setUp() {
     // Enable modules.
     parent::setUp(self::TEST_MODULE);
+
+    $fieldaccess = [];
+
+    foreach (environment_fieldaccess_fieldaccess_info() as $name => $info) {
+      $fieldaccess[$info['type']] = [
+        'access_name' => $name,
+        'individual' => 0,
+        'settings' => [
+          'not' => 0,
+          'environment' => [
+            'test_show' => 'test_show',
+          ],
+        ],
+      ];
+    }
+
+    $this->fieldsManager = new \EnvironmentFieldAccessFields([
+      self::TEST_MODULE => [
+        'type' => 'text',
+        'label' => self::TEST_MODULE,
+        'settings' => [
+          'fieldaccess' => $fieldaccess,
+          'user_register_form' => TRUE,
+        ],
+      ],
+    ]);
+
     // Create fields for testing.
     $this->fieldsManager->create();
     // Attach field to "user" entity.
