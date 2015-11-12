@@ -9,7 +9,7 @@
  *
  * @see callback_fieldaccess_grant()
  */
-function environment_fieldaccess_grant(array $settings, \stdClass $object, \stdClass $account, array $context) {
+function environment_fieldaccess_grant(array $settings) {
   $settings = _environment_fieldaccess_settings($settings, TRUE);
   $state = array_key_exists(environment_current(), $settings['environment']);
 
